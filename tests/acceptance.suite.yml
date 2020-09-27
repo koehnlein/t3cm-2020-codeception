@@ -7,8 +7,6 @@
 actor: AcceptanceTester
 modules:
     enabled:
-        - Db
-        - MailHog
         - WebDriver:
             url: https://www.typo3camp-munich.de/
             browser: chrome

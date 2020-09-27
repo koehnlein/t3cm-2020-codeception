@@ -101,3 +101,12 @@ HTML-Report generieren:
 ```
 vendor/bin/codecept run acceptance --html
 ```
+
+## Weitere Möglichkeiten/Module/Ideen
+
+* Db:  
+    Inhalte vor/nach Tests in Datenbank prüfen, evtl. User-Daten vor Login in Datenbank schreiben, User-Daten nach Registrierung löschen, ...
+* MailHog:  
+    Ausgehende Mails parsen/prüfen
+* Eigene Module:  
+    Erfolg von Newsletter-Registrierung via Newsletter-Dienstleister-API testen
