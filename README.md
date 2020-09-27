@@ -1,5 +1,7 @@
 # Codeception-Einstieg
 
+Notizen zur Codeception-Eintiegs-Session beim [TYPO3 Camp Munich #t3cm](https://www.typo3camp-munich.de) am 27. September 2020.
+
 ## Installation
 
 Am besten über composer, unbedingt mit `--dev`-Attribut. Alternativ kann man auf <https://codeception.com/install> auch eine phar-Datei laden.
@@ -50,7 +52,7 @@ Muss einmalig auf dem Test-Rechner installiert werden, nicht pro Projekt nötig.
 * WebDriver für den Browser (z.B. chromedriver, geckodriver), z.B. in `/usr/local/bin` ablegen
 * Selenium-Server (z.B. `brew install selenium`)
 
-Oder ein fertiges Docker-Image mit Selenium und dem gewünschten Browser: <https://github.com/SeleniumHQ/docker-selenium#quick-start
+Oder ein fertiges Docker-Image mit Selenium und dem gewünschten Browser: <https://github.com/SeleniumHQ/docker-selenium#quick-start>
 
 ## Test anlegen
 
@@ -58,7 +60,7 @@ Oder ein fertiges Docker-Image mit Selenium und dem gewünschten Browser: <https
 vendor/bin/codecept generate:cest acceptance <ClassName>
 ```
 
-In der angelegten Klasse/Datei können beliebig viele public functions angelegt werden. Die Funktion `_before()` wird automatisch vor jedem Test ausgeführt.
+In der angelegten Klasse/Datei können beliebig viele public functions angelegt werden. Die Funktion `_before()` wird automatisch vor jedem Test ausgeführt. Mit Aufrufen von `$I->wantTo()` und `$I->expectTo()` können die Tests, bzw. die Ausgabe der Tests stukturiert werden. 
 
 ```php
     public function _before(AcceptanceTester $I)
@@ -69,16 +71,23 @@ In der angelegten Klasse/Datei können beliebig viele public functions angelegt 
 
     public function showAnything(AcceptanceTester $I)
     {
+        $I->wantTo('click button 1');
         $I->click('.element1');
-        $I->see('a text');
+        $I->expectTo('see a specific text');
+        $I->see('Lorem ipsum');
     }
 
     public function showAndHideAnything(AcceptanceTester $I)
     {
+        $I->wantTo('click button 1');
         $I->click('.element1');
-        $I->see('a text');
+        $I->expectTo('see a specific text');
+        $I->see('Lorem ipsum');
+
+        $I->wantTo('click button 1 a second time');
         $I->click('.element1');
-        $I->dontSee('a text');
+        $I->expectTo('not see the specific text anymore');
+        $I->dontSee('Lorem ipsum');
     }
 ```
 
@@ -104,9 +113,9 @@ vendor/bin/codecept run acceptance --html
 
 ## Weitere Möglichkeiten/Module/Ideen
 
-* Db:  
+* [DB](https://github.com/Codeception/module-db):  
     Inhalte vor/nach Tests in Datenbank prüfen, evtl. User-Daten vor Login in Datenbank schreiben, User-Daten nach Registrierung löschen, ...
-* MailHog:  
+* [MailHog](https://github.com/ericmartel/codeception-email-mailhog):  
     Ausgehende Mails parsen/prüfen
 * Eigene Module:  
-    Erfolg von Newsletter-Registrierung via Newsletter-Dienstleister-API testen
+   z.B. Erfolg von Newsletter-Registrierung via Newsletter-Dienstleister-API testen
