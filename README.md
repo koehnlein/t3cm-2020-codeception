@@ -50,7 +50,7 @@ Muss einmalig auf dem Test-Rechner installiert werden, nicht pro Projekt nötig.
 
 * den Browser, mit dem ich testen will
 * WebDriver für den Browser (z.B. chromedriver, geckodriver), z.B. in `/usr/local/bin` ablegen
-* Selenium-Server (z.B. `brew install selenium`)
+* Selenium-Server (z.B. `brew install selenium-server-standalone`)
 
 Oder ein fertiges Docker-Image mit Selenium und dem gewünschten Browser: <https://github.com/SeleniumHQ/docker-selenium#quick-start>
 
